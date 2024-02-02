@@ -4,7 +4,7 @@ package com.kartheek.hospital.doctor.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="admins")
+@Table(name="doctors")
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
