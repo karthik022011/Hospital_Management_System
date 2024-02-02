@@ -1,8 +1,9 @@
 package com.kartheek.hospital.patient.controller;
 
-import com.kartheek.hospital.admin.model.request.AdminDto;
+
 import com.kartheek.hospital.patient.model.request.PatientDto;
 import com.kartheek.hospital.patient.service.PatientService;
+import com.kartheek.hospital.util.pagination.PagingResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,17 @@ public class PatientController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<PatientDto>>  getAllPatients(@RequestBody AdminDto adminDto){
+    public ResponseEntity<List<PatientDto>>  getAllPatients(){
         List<PatientDto> admins = patientService.getAllPatients();
         return ResponseEntity.ok(admins);
+    }
+
+    //http:localhost:8083//api/v1/patient?pageNo=0&pageSize=5
+    @GetMapping()
+    public ResponseEntity<PagingResponseDto<PatientDto>>  getPatientsByPagination(
+       @RequestParam(defaultValue = "0") Integer pageNo,
+       @RequestParam(defaultValue = "10") Integer pageSize){
+        PagingResponseDto<PatientDto> patients = patientService.getPatientsByPagination(pageNo, pageSize);
+        return ResponseEntity.ok(patients);
     }
 }
