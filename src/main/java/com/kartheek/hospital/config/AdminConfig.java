@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AdminConfig {
 
-   /* @Bean
+    @Bean
     public ModelMapper modelMapperBean() {
         return new ModelMapper();
-    }*/
+    }
 }
